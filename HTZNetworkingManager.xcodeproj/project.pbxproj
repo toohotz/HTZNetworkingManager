@@ -98,8 +98,7 @@
 		E91F39F21B59790600EB068A /* HTZNetworkingManager */ = {
 			isa = PBXGroup;
 			children = (
-				E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */,
-				E91F39F51B59790600EB068A /* HTZNetworkingManager.h */,
+				E91F3A121B5C4BB300EB068A /* Classes */,
 				E91F39F31B59790600EB068A /* Supporting Files */,
 			);
 			path = HTZNetworkingManager;
@@ -128,6 +127,15 @@
 				E91F3A011B59790600EB068A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E91F3A121B5C4BB300EB068A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */,
+				E91F39F51B59790600EB068A /* HTZNetworkingManager.h */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
