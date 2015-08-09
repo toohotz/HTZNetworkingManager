@@ -9,12 +9,18 @@
 import Foundation
 import Alamofire
 
-enum HTTPRequestType {
-    case GET
-    case HEAD
-    case POST
-    case PUT
-    case DELETE
+enum HTTPRequestType: Int {
+    case GET, HEAD, PUT, POST, DELETE
+
+    var name: String {
+        switch self {
+        case .GET:   return "GET"
+        case .HEAD:  return "HEAD"
+        case .PUT:   return "PUT"
+        case .POST:  return "POST"
+        case .DELETE: return "DELETE"
+        }
+    }
 }
 
 class HTZNetworkingManager: Manager {
@@ -71,6 +77,11 @@ class HTZNetworkingManager: Manager {
     {
         if let url = endpoint {
             let requestURL = "\(baseURL!)\(url)"
+
+            if let requestType = HTTPRequestType(rawValue: httpMethod.rawValue) {
+              
+            }
+
             switch httpMethod {
 
             case .POST:
