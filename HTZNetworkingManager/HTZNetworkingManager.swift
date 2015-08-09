@@ -19,12 +19,13 @@ enum HTTPRequestType {
 
 class HTZNetworkingManager: Manager {
 
-    /// Base URL that will be used for all endpoint requests.
+    /// The base URL that will be used for all endpoint requests.
     var baseURL: String?
 
     init(baseURL: String?) {
     super.init()
-    self.baseURL = baseURL
+
+        self.baseURL = baseURL
         if let _ = baseURL {
             print("A base URL has been instantiated.", appendNewline: true)
         }
@@ -33,8 +34,6 @@ class HTZNetworkingManager: Manager {
     required init(configuration: NSURLSessionConfiguration?) {
         fatalError("init(configuration:) has not been implemented")
     }
-
-
 
     /**
     Retrieve JSON data from a specified endpoint.
@@ -70,31 +69,32 @@ class HTZNetworkingManager: Manager {
     */
     func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, responseData: (postResponseStatus: String?, error: NSError?) -> () )
     {
-        if httpMethod == .POST {
-            if let url = endpoint {
-                let requestURL = "\(baseURL!)\(url)"
+        if let url = endpoint {
+            let requestURL = "\(baseURL!)\(url)"
+            switch httpMethod {
+
+            case .POST:
                 Alamofire.request(.POST, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
                     responseData(postResponseStatus: responseString, error: error)
                 })
-            } else {
-                print("An error occurred trying to parse the endpoint tha you provided.", appendNewline: true)
-            }
-        } else if httpMethod == .PUT {
-            if let url = endpoint {
-                let requestURL = "\(baseURL!)\(url)"
+
+            case .PUT:
                 Alamofire.request(.PUT, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
                     responseData(postResponseStatus: responseString, error: error)
                 })
-            } else if httpMethod == .DELETE {
-                if let url = endpoint {
-                let requestURL = "\(baseURL!)\(url)"
 
-                }
+            case .DELETE:
+                Alamofire.request(.DELETE, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
+                    responseData(postResponseStatus: responseString, error: error)
+                })
+
+            default:
+                break
             }
-            else {
-                print("An HTTPRequestType that could not be handled was passed in.", appendNewline: true)
+
+        } else {
+                print("The request could not be handled", appendNewline: true)
             }
 
         }
-    }
 }
