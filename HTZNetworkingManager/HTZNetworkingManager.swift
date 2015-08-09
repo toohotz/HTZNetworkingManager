@@ -78,30 +78,9 @@ class HTZNetworkingManager: Manager {
         if let url = endpoint {
             let requestURL = "\(baseURL!)\(url)"
 
-            if let requestType = HTTPRequestType(rawValue: httpMethod.rawValue) {
-              
-            }
-
-            switch httpMethod {
-
-            case .POST:
-                Alamofire.request(.POST, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
-                    responseData(postResponseStatus: responseString, error: error)
-                })
-
-            case .PUT:
-                Alamofire.request(.PUT, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
-                    responseData(postResponseStatus: responseString, error: error)
-                })
-
-            case .DELETE:
-                Alamofire.request(.DELETE, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
-                    responseData(postResponseStatus: responseString, error: error)
-                })
-
-            default:
-                break
-            }
+            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
+                responseData(postResponseStatus: responseString, error: error)
+            })
 
         } else {
                 print("The request could not be handled", appendNewline: true)
