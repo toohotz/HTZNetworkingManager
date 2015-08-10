@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-enum HTTPRequestType: Int {
+public enum HTTPRequestType: Int {
     case GET, HEAD, PUT, POST, DELETE
 
     var name: String {
@@ -23,13 +23,13 @@ enum HTTPRequestType: Int {
     }
 }
 
-class HTZNetworkingManager: Manager {
+public class HTZNetworkingManager: Manager {
 
     /// The base URL that will be used for all endpoint requests.
     var baseURL: String?
 
-    init(baseURL: String?) {
-    super.init()
+    public init(baseURL: String?) {
+        super.init()
 
         self.baseURL = baseURL
         if let _ = baseURL {
@@ -37,7 +37,7 @@ class HTZNetworkingManager: Manager {
         }
     }
 
-    required init(configuration: NSURLSessionConfiguration?) {
+    required public init(configuration: NSURLSessionConfiguration?) {
         fatalError("init(configuration:) has not been implemented")
     }
 
@@ -47,10 +47,11 @@ class HTZNetworkingManager: Manager {
     :param: endpoint Specified endpoint.
     :param: JSONData Closure containing JSON data or an error if the request could no be completed.
     */
-    func getDataFromEndPoint(endpoint: String?, JSONData: (receivedData: AnyObject?) -> () )
+    public func getDataFromEndPoint(endpoint: String?, JSONData: (receivedData: AnyObject?) -> () )
     {
         if let url = endpoint {
             let requestURL = "\(baseURL!)\(url)"
+            
             Alamofire.request(.GET, requestURL).responseJSON { (request, responseObject, data, error) -> Void in
                 // Handle data
                 if error != nil {
@@ -65,7 +66,7 @@ class HTZNetworkingManager: Manager {
     }
 
     /**
-    Sends data to a specific endpoint using an HTTPRequestType request
+    Sends data to a specific endpoint using an HTTPRequestType request.
 
     :param: endpoint       The endpoint for the URL HTTP request.
     :param: dataParameters Optional dictionary information to send along with the request.
@@ -73,18 +74,17 @@ class HTZNetworkingManager: Manager {
     :param: responseData   An optional response data received from network call if one is received.
     :param: error          An optional error if an error occurred.
     */
-    func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, responseData: (postResponseStatus: String?, error: NSError?) -> () )
+    public func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, responseData: (responseData: String?, error: NSError?) -> () )
     {
         if let url = endpoint {
             let requestURL = "\(baseURL!)\(url)"
 
             Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .URL).responseString(completionHandler: { (_, _, responseString, error) -> Void in
-                responseData(postResponseStatus: responseString, error: error)
+                responseData(responseData: responseString, error: error)
             })
 
         } else {
-                print("The request could not be handled", appendNewline: true)
-            }
-
+            print("The request could not be handled", appendNewline: true)
         }
+    }
 }
