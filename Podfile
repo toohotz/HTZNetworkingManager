@@ -5,4 +5,4 @@ platform :ios, '8.0'
 use_frameworks!
 
 # Pods
-pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
+pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift-2.0'
