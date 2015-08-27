@@ -33,11 +33,11 @@ public class HTZNetworkingManager: Manager {
 
         self.baseURL = baseURL
         if let _ = baseURL {
-            print("A base URL has been instantiated.", appendNewline: true)
+            print("A base URL has been instantiated.", terminator: "\n")
         }
     }
 
-    required public init(configuration: NSURLSessionConfiguration, serverTrustPolicyManager: ServerTrustPolicyManager?) {
+    required public override init(configuration: NSURLSessionConfiguration, serverTrustPolicyManager: ServerTrustPolicyManager?) {
         fatalError("init(configuration:serverTrustPolicyManager:) has not been implemented")
     }
 
@@ -54,13 +54,13 @@ public class HTZNetworkingManager: Manager {
 
             Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (_, responseObject, _) -> Void in
                 guard let validResponse = responseObject else {
-                    print("An error occurred for the GET request", appendNewline: true)
+                    print("An error occurred for the GET request", terminator: "\n")
                     return
                 }
                 JSONData(receivedData: validResponse)
             })
         } else {
-            print("An error occurred trying to parse the endpoint tha you provided.", appendNewline: true)
+            print("An error occurred trying to parse the endpoint tha you provided.", terminator: "\n")
         }
     }
 
@@ -82,7 +82,7 @@ public class HTZNetworkingManager: Manager {
                 responseData(responseData: dataResponse)
             })
         } else {
-            print("The request could not be handled", appendNewline: true)
+            print("The request could not be handled", terminator: "\n")
         }
     }
 }
