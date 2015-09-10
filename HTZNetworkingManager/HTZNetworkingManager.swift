@@ -22,19 +22,25 @@ public enum HTTPRequestType: Int {
         }
     }
 }
+private let sharedInstance = HTZFacade()
+
+public class HTZFacade {
+
+    /// The facade shared instance.
+    static let sharedInstance = HTZFacade()
+
+    let networkingManager = HTZNetworkingManager()
+
+    var baseURL: String?
+}
 
 public class HTZNetworkingManager: Manager {
 
     /// The base URL that will be used for all endpoint requests.
     var baseURL: String?
 
-    public init(baseURL: String?) {
+    public init() {
         super.init()
-
-        self.baseURL = baseURL
-        if let _ = baseURL {
-            print("A base URL has been instantiated.", terminator: "\n")
-        }
     }
 
     required public override init(configuration: NSURLSessionConfiguration, serverTrustPolicyManager: ServerTrustPolicyManager?) {
@@ -49,8 +55,9 @@ public class HTZNetworkingManager: Manager {
     */
     public func getDataFromEndPoint(endpoint: String?, JSONData: (receivedData: AnyObject?) -> () )
     {
+        guard let setURL = self.baseURL else { return }
         if let url = endpoint {
-            let requestURL = "\(baseURL!)\(url)"
+            let requestURL = "\(setURL)\(url)"
 
             Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (_, responseObject, _) -> Void in
                 guard let validResponse = responseObject else {
@@ -75,8 +82,9 @@ public class HTZNetworkingManager: Manager {
     */
     public func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, responseData: (responseData: AnyObject?) -> () )
     {
+        guard let setURL = self.baseURL else { return }
         if let url = endpoint {
-            let requestURL = "\(baseURL!)\(url)"
+            let requestURL = "\(setURL)\(url)"
 
             Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .URL, headers: nil).responseJSON(completionHandler: { (_, dataResponse, _) -> Void in
                 responseData(responseData: dataResponse)

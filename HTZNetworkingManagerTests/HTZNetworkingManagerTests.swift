@@ -21,16 +21,11 @@ class HTZNetworkingManagerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testSingleton()
+    {
+       let firstSingleton = HTZFacade.sharedInstance
+        firstSingleton.networkingManager.baseURL = "Some URL"
+        let secondSingleton = HTZFacade.sharedInstance
+        XCTAssert(firstSingleton.networkingManager === secondSingleton.networkingManager, "The singleton's are not equal")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
