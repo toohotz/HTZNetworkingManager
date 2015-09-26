@@ -22,12 +22,12 @@ public enum HTTPRequestType: Int {
         }
     }
 }
-private let sharedInstance = HTZFacade()
+private let sharedInstance = HTZNetworkingFacade()
 
-public class HTZFacade {
+public class HTZNetworkingFacade {
 
-    /// The facade shared instance.
-    static let sharedInstance = HTZFacade()
+    /// The networking facade shared instance.
+    static let sharedInstance = HTZNetworkingFacade()
 
     let networkingManager = HTZNetworkingManager()
 
