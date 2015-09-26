@@ -22,7 +22,6 @@ public enum HTTPRequestType: Int {
         }
     }
 }
-private let sharedInstance = HTZNetworkingFacade()
 
 public class HTZNetworkingFacade {
 
