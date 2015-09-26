@@ -26,6 +26,6 @@ class HTZNetworkingManagerTests: XCTestCase {
        let firstSingleton = HTZFacade.sharedInstance
         firstSingleton.networkingManager.baseURL = "Some URL"
         let secondSingleton = HTZFacade.sharedInstance
-        XCTAssert(firstSingleton.networkingManager === secondSingleton.networkingManager, "The singleton's are not equal")
+        XCTAssert(firstSingleton.networkingManager === secondSingleton.networkingManager, "The singleton's network managers are not equal")
     }
 }
