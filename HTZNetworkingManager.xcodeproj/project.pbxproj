@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A82223BAB1102FDCBF5EE2EF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A85A5F8580A4E607EA295C /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A82223BAB1102FDCBF5EE2EF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A85A5F8580A4E607EA295C /* Pods.framework */; };
 		E91F39F61B59790600EB068A /* HTZNetworkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E91F39F51B59790600EB068A /* HTZNetworkingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E91F39FC1B59790600EB068A /* HTZNetworkingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91F39F01B59790600EB068A /* HTZNetworkingManager.framework */; };
 		E91F3A031B59790600EB068A /* HTZNetworkingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A021B59790600EB068A /* HTZNetworkingManagerTests.swift */; };
