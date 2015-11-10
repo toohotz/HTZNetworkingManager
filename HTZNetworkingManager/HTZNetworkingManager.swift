@@ -29,16 +29,14 @@ public class HTZNetworkingFacade {
     static public let sharedInstance = HTZNetworkingFacade()
 
     public let networkingManager = HTZNetworkingManager()
+
+    public init() {}
 }
 
 public class HTZNetworkingManager: Manager {
 
     /// The base URL that will be used for all endpoint requests.
     public var baseURL: String?
-
-    public init() {
-        super.init()
-    }
 
     /**
      Retrieve JSON data from a specified endpoint.
