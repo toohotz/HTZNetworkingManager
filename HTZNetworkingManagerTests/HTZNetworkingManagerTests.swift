@@ -28,4 +28,24 @@ class HTZNetworkingManagerTests: XCTestCase {
         let secondSingleton = HTZNetworkingFacade.sharedInstance
         XCTAssert(firstSingleton.networkingManager === secondSingleton.networkingManager, "The singleton's network managers are not equal")
     }
+
+    func testGetRequest()
+    {
+        let myFacade = HTZNetworkingFacade.sharedInstance
+        let expectation = expectationWithDescription("Expecting a functional GET request")
+
+        myFacade.networkingManager.baseURL = "https://s3.amazonaws.com/f.cl.ly/items/29123p1h0n2w25282Y1R"
+        myFacade.networkingManager.getDataFromEndPoint("/VehicleList.json") { (responseData) -> () in
+
+            let responseReceived = responseData as? Dictionary<String,[AnyObject]>
+
+            XCTAssertTrue(responseReceived?["Vehicles"] != nil)
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(100) { (error) -> Void in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
 }
