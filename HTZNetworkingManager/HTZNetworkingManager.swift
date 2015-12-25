@@ -28,9 +28,10 @@ public class HTZNetworkingFacade {
     /// The networking facade shared instance.
     static public let sharedInstance = HTZNetworkingFacade()
 
+    /// The underlying networking manager.
     public let networkingManager = HTZNetworkingManager()
 
-    public init() {}
+    private init() {}
 }
 
 public class HTZNetworkingManager: Manager {
@@ -46,9 +47,22 @@ public class HTZNetworkingManager: Manager {
      */
     public func getDataFromEndPoint(endpoint: String?, JSONData: (AnyObject) -> () )
     {
-        guard let setURL = self.baseURL else { return }
-        if let url = endpoint {
-            let requestURL = "\(setURL)\(url)"
+        guard let setURL = self.baseURL else {
+            print("A base URL has not been set, cancelling request.")
+            return
+        }
+        if endpoint == nil || endpoint?.isEmpty == true {
+            Alamofire.request(.GET, setURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
+                if let finalResponse = jsonResponse.result.value {
+                    JSONData(finalResponse)
+                } else {
+                    if let errorOccurred = jsonResponse.result.error {
+                        JSONData(errorOccurred)
+                    }
+                }
+            })
+        } else  {
+            let requestURL = "\(setURL)\(endpoint)"
             Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
                     JSONData(finalResponse)
@@ -71,10 +85,22 @@ public class HTZNetworkingManager: Manager {
      */
     public func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, responseData: (AnyObject) -> () )
     {
-        guard let setURL = self.baseURL else { return }
-        if let url = endpoint {
-            let requestURL = "\(setURL)\(url)"
-
+        guard let setURL = self.baseURL else {
+            print("A base URL has not been set, cancelling request.")
+            return
+        }
+        if endpoint == nil || endpoint?.isEmpty == true {
+            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, setURL, parameters: dataParameters, encoding: .URL, headers: nil).responseJSON(completionHandler: { (jsonResponse) -> Void in
+                if let finalResponse = jsonResponse.result.value {
+                    responseData(finalResponse)
+                } else {
+                    if let errorOccurred = jsonResponse.result.error {
+                        responseData(errorOccurred)
+                    }
+                }
+            })
+        } else {
+            let requestURL = "\(setURL)\(endpoint)"
             Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .URL, headers: nil).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
                     responseData(finalResponse)
