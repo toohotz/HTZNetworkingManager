@@ -34,12 +34,10 @@ class HTZNetworkingManagerTests: XCTestCase {
         let myFacade = HTZNetworkingFacade.sharedInstance
         let expectation = expectationWithDescription("Expecting a functional GET request")
 
-        myFacade.networkingManager.baseURL = "https://s3.amazonaws.com/f.cl.ly/items/29123p1h0n2w25282Y1R"
-        myFacade.networkingManager.getDataFromEndPoint("/VehicleList.json") { (responseData) -> () in
+        myFacade.networkingManager.baseURL = "https://api.github.com/users/mralexgray/repos"
+        myFacade.networkingManager.getDataFromEndPoint(nil) { (responseData) -> () in
 
-            let responseReceived = responseData as? Dictionary<String,[AnyObject]>
-
-            XCTAssertTrue(responseReceived?["Vehicles"] != nil)
+            XCTAssertFalse(responseData is NSError, "The response received is nil.")
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(100) { (error) -> Void in
