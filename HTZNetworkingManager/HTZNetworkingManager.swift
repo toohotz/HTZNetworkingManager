@@ -31,7 +31,7 @@ public class HTZNetworkingFacade {
     /// The underlying networking manager.
     public let networkingManager = HTZNetworkingManager()
 
-    private init() {}
+    public init() {}
 }
 
 public class HTZNetworkingManager: Manager {
