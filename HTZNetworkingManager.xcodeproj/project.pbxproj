@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A82223BAB1102FDCBF5EE2EF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A85A5F8580A4E607EA295C /* Pods.framework */; };
 		E91F39F61B59790600EB068A /* HTZNetworkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E91F39F51B59790600EB068A /* HTZNetworkingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E91F39FC1B59790600EB068A /* HTZNetworkingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91F39F01B59790600EB068A /* HTZNetworkingManager.framework */; };
 		E91F3A031B59790600EB068A /* HTZNetworkingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A021B59790600EB068A /* HTZNetworkingManagerTests.swift */; };
 		E91F3A101B597A6200EB068A /* HTZNetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */; };
 		E91F3A111B597A6200EB068A /* HTZNetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */; };
+		E95047871C2F24C500E739FD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95047861C2F24C500E739FD /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		29F259E611DAAECAD4ADEE40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A9A85A5F8580A4E607EA295C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CC28D3FFE03B6261B464C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E91F39F01B59790600EB068A /* HTZNetworkingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTZNetworkingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91F39F41B59790600EB068A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		E91F3A011B59790600EB068A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E91F3A021B59790600EB068A /* HTZNetworkingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTZNetworkingManagerTests.swift; sourceTree = "<group>"; };
 		E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTZNetworkingManager.swift; sourceTree = "<group>"; };
+		E95047861C2F24C500E739FD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/TestingSwift-borvviptdbwggbcvknobinpivtyn/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A82223BAB1102FDCBF5EE2EF /* Pods.framework in Frameworks */,
+				E95047871C2F24C500E739FD /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 		C032CC8B8EA779CA0049DB4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A9A85A5F8580A4E607EA295C /* Pods.framework */,
+				E95047861C2F24C500E739FD /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
