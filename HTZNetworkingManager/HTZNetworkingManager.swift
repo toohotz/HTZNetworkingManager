@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+//import Result
 
 public enum HTTPRequestType: Int {
     case GET, HEAD, PUT, POST, DELETE
@@ -45,7 +46,7 @@ public class HTZNetworkingManager: Manager {
      - parameter endpoint: Specified endpoint.
      - parameter JSONData: Closure containing JSON data or an error if the request could no be completed.
      */
-    public func getDataFromEndPoint(endpoint: String?, JSONData: (AnyObject) -> () )
+    public func getDataFromEndPoint(endpoint: String?, JSONData: (Result<AnyObject, NetworkingError>) -> () )
     {
         guard let setURL = self.baseURL else {
             print("A base URL has not been set, cancelling request.")
@@ -54,10 +55,10 @@ public class HTZNetworkingManager: Manager {
         if endpoint == nil || endpoint?.isEmpty == true {
             Alamofire.request(.GET, setURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
-                    JSONData(finalResponse)
+                    JSONData(.Success(finalResponse))
                 } else {
                     if let errorOccurred = jsonResponse.result.error {
-                        JSONData(errorOccurred)
+                        JSONData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
                     }
                 }
             })
@@ -65,10 +66,10 @@ public class HTZNetworkingManager: Manager {
             let requestURL = "\(setURL)\(endpoint)"
             Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
-                    JSONData(finalResponse)
+                    JSONData(.Success(finalResponse))
                 } else {
                     if let errorOccurred = jsonResponse.result.error {
-                        JSONData(errorOccurred)
+                        JSONData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
                     }
                 }
             })
@@ -76,14 +77,14 @@ public class HTZNetworkingManager: Manager {
     }
 
     /**
-     Sends data to a specific endpoint using an HTTPRequestType request.
+     Sends data to a specific endpoint using an **HTTPRequestType** request.
 
      - parameter endpoint:       The endpoint for the URL HTTP request.
      - parameter dataParameters: Optional dictionary information to send along with the request.
-     - parameter httpMethod:     HTTPMethod to define the request type.
-     - parameter responseData:   An optional response data received from network call if one is received.
+     - parameter httpMethod:     **HTTPMethod** to define the request type.
+     - parameter JSONData:       Closure containing JSON data or an error if the request could no be completed.
      */
-    public func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, responseData: (AnyObject) -> () )
+    public func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, httpMethod: HTTPRequestType, JSONData: (Result<AnyObject, NetworkingError>) -> () )
     {
         guard let setURL = self.baseURL else {
             print("A base URL has not been set, cancelling request.")
@@ -92,10 +93,10 @@ public class HTZNetworkingManager: Manager {
         if endpoint == nil || endpoint?.isEmpty == true {
             Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, setURL, parameters: dataParameters, encoding: .URL, headers: nil).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
-                    responseData(finalResponse)
+                    JSONData(.Success(finalResponse))
                 } else {
                     if let errorOccurred = jsonResponse.result.error {
-                        responseData(errorOccurred)
+                        JSONData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
                     }
                 }
             })
@@ -103,10 +104,10 @@ public class HTZNetworkingManager: Manager {
             let requestURL = "\(setURL)\(endpoint)"
             Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .URL, headers: nil).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
-                    responseData(finalResponse)
+                    JSONData(.Success(finalResponse))
                 } else {
                     if let errorOccurred = jsonResponse.result.error {
-                        responseData(errorOccurred)
+                        JSONData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
                     }
                 }
             })

@@ -37,7 +37,12 @@ class HTZNetworkingManagerTests: XCTestCase {
         myFacade.networkingManager.baseURL = "https://api.github.com/users/mralexgray/repos"
         myFacade.networkingManager.getDataFromEndPoint(nil) { (responseData) -> () in
 
-            XCTAssertFalse(responseData is NSError, "The response received is nil.")
+            switch responseData {
+            case .Success(let validResponse):
+                print("Valid response received. \(validResponse)")
+            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+                XCTAssert(false, "The GET request failed. - \(errorDescription)")
+            }
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(100) { (error) -> Void in

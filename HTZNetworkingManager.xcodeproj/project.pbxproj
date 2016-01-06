@@ -13,6 +13,8 @@
 		E91F3A101B597A6200EB068A /* HTZNetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */; };
 		E91F3A111B597A6200EB068A /* HTZNetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */; };
 		E95047871C2F24C500E739FD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95047861C2F24C500E739FD /* Alamofire.framework */; };
+		E9E12A2B1C3D78930017D09B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E12A2A1C3D78930017D09B /* NetworkingError.swift */; };
+		E9E12A2C1C3D8C260017D09B /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E12A2A1C3D78930017D09B /* NetworkingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		E91F3A021B59790600EB068A /* HTZNetworkingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTZNetworkingManagerTests.swift; sourceTree = "<group>"; };
 		E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTZNetworkingManager.swift; sourceTree = "<group>"; };
 		E95047861C2F24C500E739FD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/TestingSwift-borvviptdbwggbcvknobinpivtyn/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		E9B758741C3D770600ED907F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../Result/build/Debug-iphoneos/Result.framework"; sourceTree = "<group>"; };
+		E9E12A2A1C3D78930017D09B /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 		C032CC8B8EA779CA0049DB4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9B758741C3D770600ED907F /* Result.framework */,
 				E95047861C2F24C500E739FD /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -134,6 +139,7 @@
 			children = (
 				E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */,
 				E91F39F51B59790600EB068A /* HTZNetworkingManager.h */,
+				E9E12A2A1C3D78930017D09B /* NetworkingError.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -281,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E12A2B1C3D78930017D09B /* NetworkingError.swift in Sources */,
 				E91F3A101B597A6200EB068A /* HTZNetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91F3A111B597A6200EB068A /* HTZNetworkingManager.swift in Sources */,
+				E9E12A2C1C3D8C260017D09B /* NetworkingError.swift in Sources */,
 				E91F3A031B59790600EB068A /* HTZNetworkingManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
