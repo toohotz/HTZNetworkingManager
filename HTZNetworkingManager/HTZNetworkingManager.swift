@@ -63,7 +63,7 @@ public class HTZNetworkingManager: Manager {
                 }
             })
         } else  {
-            let requestURL = "\(setURL)\(endpoint)"
+            let requestURL = "\(setURL)\(endpoint!)"
             Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
                     JSONData(.Success(finalResponse))
@@ -101,7 +101,7 @@ public class HTZNetworkingManager: Manager {
                 }
             })
         } else {
-            let requestURL = "\(setURL)\(endpoint)"
+            let requestURL = "\(setURL)\(endpoint!)"
             Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .URL, headers: nil).responseJSON(completionHandler: { (jsonResponse) -> Void in
                 if let finalResponse = jsonResponse.result.value {
                     JSONData(.Success(finalResponse))
