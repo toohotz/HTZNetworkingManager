@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-//import Result
 
 public enum HTTPRequestType: Int {
     case GET, HEAD, PUT, POST, DELETE
