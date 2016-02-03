@@ -38,7 +38,6 @@
 		E91F3A021B59790600EB068A /* HTZNetworkingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTZNetworkingManagerTests.swift; sourceTree = "<group>"; };
 		E91F3A0F1B597A6200EB068A /* HTZNetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTZNetworkingManager.swift; sourceTree = "<group>"; };
 		E95047861C2F24C500E739FD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/TestingSwift-borvviptdbwggbcvknobinpivtyn/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
-		E9B758741C3D770600ED907F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../Result/build/Debug-iphoneos/Result.framework"; sourceTree = "<group>"; };
 		E9E12A2A1C3D78930017D09B /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +73,6 @@
 		C032CC8B8EA779CA0049DB4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9B758741C3D770600ED907F /* Result.framework */,
 				E95047861C2F24C500E739FD /* Alamofire.framework */,
 			);
 			name = Frameworks;
