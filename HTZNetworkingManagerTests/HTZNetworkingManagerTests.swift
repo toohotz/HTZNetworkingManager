@@ -45,9 +45,58 @@ class HTZNetworkingManagerTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(100) { (error) -> Void in
+        waitForExpectationsWithTimeout(30) { (error) -> Void in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                XCTAssertTrue(true, "API request took longer than the 30 second window. - Error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func testCRUDRequests()
+    {
+        let myFacade = HTZNetworkingFacade.sharedInstance
+        let postExpectation = expectationWithDescription("post request")
+        let putExpectation = expectationWithDescription("put request")
+        let deleteExpectation = expectationWithDescription("delete request")
+
+        myFacade.networkingManager.baseURL = "http://httpbin.org/"
+
+        // POST
+        myFacade.networkingManager.sendDataWithEndPoint("post", dataParameters: ["Hello": "World"], httpMethod: HTTPRequestType.POST) { (responseData) -> () in
+
+            switch responseData {
+            case .Success(let validResponse):
+                print("Valid response received. \(validResponse)")
+            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+                XCTAssert(false, "The POST request failed. - \(errorDescription)")
+            }
+            postExpectation.fulfill()
+        }
+
+        // PUT
+        myFacade.networkingManager.sendDataWithEndPoint("put", dataParameters: ["hola": "mundo"], httpMethod: .PUT) { (responseData) -> () in
+            switch responseData {
+            case .Success(let validResponse):
+                print("Valid response received. \(validResponse)")
+            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+                XCTAssert(false, "The PUT request failed. - \(errorDescription)")
+            }
+            putExpectation.fulfill()
+        }
+
+        // DELETE
+        myFacade.networkingManager.sendDataWithEndPoint("delete", dataParameters: ["hello": "world"], httpMethod: .DELETE) { (responseData) -> () in
+            switch responseData {
+            case .Success(let validResponse):
+                print("Valid response received. \(validResponse)")
+            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+                XCTAssert(false, "The DELETE request failed. - \(errorDescription)")
+            }
+            deleteExpectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(30) { (error) -> Void in
+            if let error = error {
+                XCTAssertTrue(true, "API request took longer than the 30 second window. - Error: \(error.localizedDescription)")
             }
         }
     }
