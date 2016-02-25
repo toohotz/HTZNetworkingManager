@@ -34,7 +34,7 @@ public class HTZNetworkingFacade {
     /// The networking facade shared instance.
     static public let sharedInstance = HTZNetworkingFacade()
 
-    /// The underlying networking manager.
+    /// The underlying networking manager that initiates HTTP requests.
     public let networkingManager = HTZNetworkingManager()
 
     public init() {}
@@ -51,31 +51,40 @@ public class HTZNetworkingManager: Manager {
      - parameter endpoint: Specified endpoint.
      - parameter JSONData: Closure containing JSON data or an error if the request could no be completed.
      */
-    public func getDataFromEndPoint(endpoint: String?, JSONData: (Result<AnyObject, NetworkingError>) -> () )
+    public func getDataFromEndPoint(endpoint: String?, responseType: ResponseType, resultData: (Result<AnyObject, NetworkingError>) -> () )
     {
         guard let setURL = self.baseURL else {
             print("A base URL has not been set, cancelling request.")
             return
         }
-        if endpoint == nil || endpoint?.isEmpty == true {
-            Alamofire.request(.GET, setURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
-                if let finalResponse = jsonResponse.result.value {
-                    JSONData(.Success(finalResponse))
-                } else {
-                    if let errorOccurred = jsonResponse.result.error {
-                        JSONData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
-                    }
+        let requestURL = (endpoint != nil) ? "\(setURL)\(endpoint!)" : setURL
+
+        switch responseType {
+        case .JSON:
+            Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (JSONResponse) -> Void in
+                switch JSONResponse.result {
+                case .Success(let JSON):
+                    resultData(.Success(JSON))
+                case .Failure(let errorOccurred):
+                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
                 }
             })
-        } else  {
-            let requestURL = "\(setURL)\(endpoint!)"
-            Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (jsonResponse) -> Void in
-                if let finalResponse = jsonResponse.result.value {
-                    JSONData(.Success(finalResponse))
-                } else {
-                    if let errorOccurred = jsonResponse.result.error {
-                        JSONData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
-                    }
+        case .String:
+            Alamofire.request(.GET, requestURL).responseString(completionHandler: { (responseString) -> Void in
+                switch responseString.result {
+                case .Success(let stringValue):
+                    resultData(.Success(stringValue))
+                case .Failure(let errorOccurred):
+                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                }
+            })
+        case .RawData:
+            Alamofire.request(.GET, requestURL).responseData({ (responseData) -> Void in
+                switch responseData.result {
+                case .Success(let response):
+                    resultData(.Success(response))
+                case .Failure(let errorOccurred):
+                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
                 }
             })
         }
