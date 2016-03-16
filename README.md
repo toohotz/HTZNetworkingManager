@@ -162,10 +162,7 @@ userFacade.retrieveAllUsers{ (userResponse) -> () in
 }
 ```
 
-## Todo
-- Integrate JSON response handling
-
 ### Credits
 
-Much goes out to the Alaofire Software Foundation for being the bedrock of how this framework wrapper functions.
+Much goes out to the Alamofire Software Foundation for being the bedrock of how this framework wrapper functions.
 
