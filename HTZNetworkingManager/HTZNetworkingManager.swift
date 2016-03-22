@@ -49,7 +49,7 @@ public class HTZNetworkingManager: Manager {
      Retrieve JSON data from a specified endpoint.
 
      - parameter endpoint: Specified endpoint.
-     - parameter JSONData: Closure containing JSON data or an error if the request could no be completed.
+     - parameter JSONData: Closure containing the specified response type data or an error if the request could no be completed.
      */
     public func getDataFromEndPoint(endpoint: String?, responseType: ResponseType, resultData: (Result<AnyObject, NetworkingError>) -> () )
     {
