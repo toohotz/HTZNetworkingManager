@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0263E374B0B75B6A9467ED03 /* Pods_HTZNetworkingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829F281FF944C225572AFAE1 /* Pods_HTZNetworkingManager.framework */; };
 		E91F39F61B59790600EB068A /* HTZNetworkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E91F39F51B59790600EB068A /* HTZNetworkingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E91F39FC1B59790600EB068A /* HTZNetworkingManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91F39F01B59790600EB068A /* HTZNetworkingManager.framework */; };
 		E91F3A031B59790600EB068A /* HTZNetworkingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F3A021B59790600EB068A /* HTZNetworkingManagerTests.swift */; };
@@ -28,8 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		29F259E611DAAECAD4ADEE40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E7CC28D3FFE03B6261B464C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2693C6315791588D40F46CD4 /* Pods-HTZNetworkingManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTZNetworkingManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTZNetworkingManager/Pods-HTZNetworkingManager.release.xcconfig"; sourceTree = "<group>"; };
+		829F281FF944C225572AFAE1 /* Pods_HTZNetworkingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HTZNetworkingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8EAABC42653A589143443A1 /* Pods-HTZNetworkingManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTZNetworkingManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTZNetworkingManager/Pods-HTZNetworkingManager.debug.xcconfig"; sourceTree = "<group>"; };
 		E91F39F01B59790600EB068A /* HTZNetworkingManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTZNetworkingManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91F39F41B59790600EB068A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E91F39F51B59790600EB068A /* HTZNetworkingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTZNetworkingManager.h; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E95047871C2F24C500E739FD /* Alamofire.framework in Frameworks */,
+				0263E374B0B75B6A9467ED03 /* Pods_HTZNetworkingManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,11 +64,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F4144D51212BE2BBEC945FF /* Pods */ = {
+		3DA8A6F2F7189AE051DD630B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				29F259E611DAAECAD4ADEE40 /* Pods.debug.xcconfig */,
-				E7CC28D3FFE03B6261B464C2 /* Pods.release.xcconfig */,
+				E8EAABC42653A589143443A1 /* Pods-HTZNetworkingManager.debug.xcconfig */,
+				2693C6315791588D40F46CD4 /* Pods-HTZNetworkingManager.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -74,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				E95047861C2F24C500E739FD /* Alamofire.framework */,
+				829F281FF944C225572AFAE1 /* Pods_HTZNetworkingManager.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,8 +88,8 @@
 				E91F39F21B59790600EB068A /* HTZNetworkingManager */,
 				E91F39FF1B59790600EB068A /* HTZNetworkingManagerTests */,
 				E91F39F11B59790600EB068A /* Products */,
-				0F4144D51212BE2BBEC945FF /* Pods */,
 				C032CC8B8EA779CA0049DB4B /* Frameworks */,
+				3DA8A6F2F7189AE051DD630B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,12 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E91F3A061B59790600EB068A /* Build configuration list for PBXNativeTarget "HTZNetworkingManager" */;
 			buildPhases = (
-				4B75A3F4E0E7D22C1C7B5680 /* Check Pods Manifest.lock */,
+				156200568A6928EE4415A5CC /* [CP] Check Pods Manifest.lock */,
 				E91F39EB1B59790600EB068A /* Sources */,
 				E91F39EC1B59790600EB068A /* Frameworks */,
 				E91F39ED1B59790600EB068A /* Headers */,
 				E91F39EE1B59790600EB068A /* Resources */,
-				23DA7D6D3D1EF07CAAE6B6D6 /* Copy Pods Resources */,
+				97F86805B75835E5C5B2F46A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,34 +252,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		23DA7D6D3D1EF07CAAE6B6D6 /* Copy Pods Resources */ = {
+		156200568A6928EE4415A5CC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4B75A3F4E0E7D22C1C7B5680 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		97F86805B75835E5C5B2F46A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTZNetworkingManager/Pods-HTZNetworkingManager-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -403,7 +407,7 @@
 		};
 		E91F3A071B59790600EB068A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29F259E611DAAECAD4ADEE40 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E8EAABC42653A589143443A1 /* Pods-HTZNetworkingManager.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -422,7 +426,7 @@
 		};
 		E91F3A081B59790600EB068A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7CC28D3FFE03B6261B464C2 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2693C6315791588D40F46CD4 /* Pods-HTZNetworkingManager.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;

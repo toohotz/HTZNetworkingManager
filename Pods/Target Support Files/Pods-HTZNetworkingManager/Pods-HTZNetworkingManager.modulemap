@@ -1,0 +1,6 @@
+framework module Pods_HTZNetworkingManager {
+  umbrella header "Pods-HTZNetworkingManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
