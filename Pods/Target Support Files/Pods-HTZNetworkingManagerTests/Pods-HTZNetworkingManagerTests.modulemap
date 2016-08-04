@@ -1,0 +1,6 @@
+framework module Pods_HTZNetworkingManagerTests {
+  umbrella header "Pods-HTZNetworkingManagerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

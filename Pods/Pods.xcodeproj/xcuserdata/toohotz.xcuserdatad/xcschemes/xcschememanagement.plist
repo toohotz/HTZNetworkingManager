@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-HTZNetworkingManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Result.xcscheme</key>
+		<key>Pods-HTZNetworkingManagerTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,25 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1A16F203ACA92353E54104D9DDD70F4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>26F5D6B8418265C273711DB23F5D8BF3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
-<<<<<<< 5f721bd01a231e5ab3dce87ebf0ea4e8a3df1c36
-=======
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>57CFC4DF5A94826729A3A532FC59EE52</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D42D2FBC9DD2E7DDCE6945BD622FB175</key>
->>>>>>> scheme mangement
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>57CFC4DF5A94826729A3A532FC59EE52</key>
 		<dict>
 			<key>primary</key>
 			<true/>
