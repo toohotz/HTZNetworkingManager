@@ -70,9 +70,9 @@ Since code speaks better, handling a typical response would look like so:
 
 ``` swift 
 switch responseData {
-case .Success(let validResponse):
+case .success(let validResponse):
 // Do something with the response received
-case .Failure(let NetworkingError.ResponseError(errorDescription)):
+case .failure(let NetworkingError.responseError(errorDescription)):
 // Handle the error accordingly
 }
 ```
@@ -115,10 +115,10 @@ func retrieveAllUsers(userData: Result<[Users], UserNetworkError> -> () )
 Here our expected response will be either a list of users or a custom error object that should handle all of our possible errors with a last case to handle an unexpected error (such as from the network itself). An example of that would look like this:
 
 ``` swift
-enum UserNetworkError: ErrorType {
-	case NoUsersFound
+enum UserNetworkError: Error {
+	case noUsersFound
 	// Our unexpected error handling case here
-	case SearchRequestFailed(String)
+	case searchRequestFailed(String)
 }
 ```
 The body of our API would then look like so:
@@ -127,20 +127,20 @@ The body of our API would then look like so:
 // Make the call to the underlying networking API
 self.networkingManager.getDataFromEndPoint(UserbaseFacadeEndpoint.retrieveAllUsers.rawValue) { (responseData) -> () in 
 	switch responseData {
-	case .Success(let rawUserData):
+	case .success(let rawUserData):
 	// Parse the data *NOTE for example sake we are just casting our response to the desired callback type*
 	let parsedUsers = rawUserData as! [Users]
-	// Here we check if no users were returned we callback with our custom .NoUsersFound error
+	// Here we check if no users were returned we callback with our custom .noUsersFound error
 	if parsedUsers?.isEmpty == true {
-                    userData(.Failure(UserNetworkError.NoUsersFound))
+                    userData(.failure(UserNetworkError.noUsersFound))
     }
-    userData(.Success(parsedUsers))
+    userData(.success(parsedUsers))
     
     // Our default error handling case
     
-    case .Failure(let NetworkingError.ResponseError(responseError)):
+    case .failure(let NetworkingError.responseError(responseError)):
     // Passing along the error description that we received
-    userData(.Failure(UserNetworkError.SearchRequestFailed(responseError))
+    userData(.failure(UserNetworkError.SearchRequestFailed(responseError))
 	}
 }
 ```
@@ -154,9 +154,9 @@ userFacade.retrieveAllUsers{ (userResponse) -> () in
 	switch userResponse {
 	case .Success(let users):
 	// Do something with the list of users
-	case .Failure(let UserNetworkError.NoUsersFound):
+	case .failure(let UserNetworkError.noUsersFound):
 	print("No users were found.")
-	case .Failure(let UserNetworkError.SearchRequestFailed(responseString)):
+	case .failure(let UserNetworkError.SearchRequestFailed(responseString)):
 	print(responseString)
 	}
 }
