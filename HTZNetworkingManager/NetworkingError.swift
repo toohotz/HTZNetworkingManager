@@ -8,6 +8,6 @@
 
 import Foundation
 
-public enum NetworkingError: ErrorType {
-    case ResponseError(String)
+public enum NetworkingError: Error {
+    case responseError(String)
 }

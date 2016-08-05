@@ -21,50 +21,50 @@ class HTZNetworkingManagerTests: XCTestCase {
 
     func testRequests()
     {
-        let expectation = expectationWithDescription("Expecting a functional GET request")
-        let postExpectation = expectationWithDescription("This API is expected to send a POST request")
-        let deleteExpectation = expectationWithDescription("This API is expected to send a DELETE request")
-        let putExpectation = expectationWithDescription("This API is expected to send a PUT request")
+        let expectation = self.expectation(description: "Expecting a functional GET request")
+        let postExpectation = self.expectation(description: "This API is expected to send a POST request")
+        let deleteExpectation = self.expectation(description: "This API is expected to send a DELETE request")
+        let putExpectation = self.expectation(description: "This API is expected to send a PUT request")
 
         let myFacade = HTZNetworkingFacade.sharedInstance
         myFacade.networkingManager.baseURL = "https://httpbin.org/"
-        myFacade.networkingManager.getDataFromEndPoint("get", responseType: ResponseType.JSON) { (responseData) in
+        myFacade.networkingManager.getDataFromEndPoint("get", responseType: .json) { (responseData) in
             switch responseData {
-            case .Success(_):
+            case .success(_):
                 break
-            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+            case .failure(let NetworkingError.responseError(errorDescription)):
                 XCTAssert(false, "The GET request failed. - \(errorDescription)")
             }
             expectation.fulfill()
         }
-        myFacade.networkingManager.sendDataWithEndPoint("post", dataParameters: ["Foo": "Bar"], responseType: .JSON, httpMethod: .POST) { (responseData) in
+        myFacade.networkingManager.sendDataWithEndPoint("post", dataParameters: ["Foo": "Bar"], responseType: .json, httpMethod: .post) { (responseData) in
             switch responseData {
-            case .Success(_):
+            case .success(_):
                 break
-            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+            case .failure(let NetworkingError.responseError(errorDescription)):
                 XCTAssert(false, "The POST request failed. - \(errorDescription)")
             }
             postExpectation.fulfill()
         }
-        myFacade.networkingManager.sendDataWithEndPoint("put", dataParameters: ["Hello": "World"], responseType: .JSON, httpMethod: .PUT) { (responseData) in
+        myFacade.networkingManager.sendDataWithEndPoint("put", dataParameters: ["Hello": "World"], responseType: .json, httpMethod: .put) { (responseData) in
             switch responseData {
-            case .Success(_):
+            case .success(_):
                 break
-            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+            case .failure(let NetworkingError.responseError(errorDescription)):
                 XCTAssert(false, "The PUT request failed. - \(errorDescription)")
             }
             putExpectation.fulfill()
         }
-        myFacade.networkingManager.sendDataWithEndPoint("delete", dataParameters: ["hola": "mundo"], responseType: .JSON, httpMethod: .DELETE) { (responseData) in
+        myFacade.networkingManager.sendDataWithEndPoint("delete", dataParameters: ["hola": "mundo"], responseType: .json, httpMethod: .delete) { (responseData) in
             switch responseData {
-            case .Success(_):
+            case .success(_):
                 break
-            case .Failure(let NetworkingError.ResponseError(errorDescription)):
+            case .failure(let NetworkingError.responseError(errorDescription)):
                 XCTAssert(false, "The DELETE request failed. - \(errorDescription)")
             }
             deleteExpectation.fulfill()
         }
-        waitForExpectationsWithTimeout(10) { (error) -> Void in
+        waitForExpectations(timeout: 10) { (error) -> Void in
             if let error = error {
                 XCTAssertTrue(true, "API request took longer than the 30 second window. - Error: \(error.localizedDescription)")
             }

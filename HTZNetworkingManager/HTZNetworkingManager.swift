@@ -10,23 +10,23 @@ import Foundation
 import Alamofire
 
 public enum HTTPRequestType: Int {
-    case GET, HEAD, PUT, POST, DELETE
+    case get, head, put, post, delete
 
     var name: String {
         switch self {
-        case .GET:   return "GET"
-        case .HEAD:  return "HEAD"
-        case .PUT:   return "PUT"
-        case .POST:  return "POST"
-        case .DELETE: return "DELETE"
+        case .get:   return "GET"
+        case .head:  return "HEAD"
+        case .put:   return "PUT"
+        case .post:  return "POST"
+        case .delete: return "DELETE"
         }
     }
 }
 
 public enum ResponseType {
-    case JSON
-    case String
-    case RawData
+    case json
+    case string
+    case rawData
 }
 
 public class HTZNetworkingFacade {
@@ -51,7 +51,7 @@ public class HTZNetworkingManager: Manager {
      - parameter endpoint: Specified endpoint.
      - parameter JSONData: Closure containing the specified response type data or an error if the request could no be completed.
      */
-    public func getDataFromEndPoint(endpoint: String?, responseType: ResponseType, resultData: (Result<AnyObject, NetworkingError>) -> () )
+    public func getDataFromEndPoint(_ endpoint: String?, responseType: ResponseType, resultData: (Result<AnyObject, NetworkingError>) -> () )
     {
         guard let setURL = self.baseURL else {
             print("A base URL has not been set, cancelling request.")
@@ -60,31 +60,31 @@ public class HTZNetworkingManager: Manager {
         let requestURL = (endpoint != nil) ? "\(setURL)\(endpoint!)" : setURL
 
         switch responseType {
-        case .JSON:
+        case .json:
             Alamofire.request(.GET, requestURL).responseJSON(completionHandler: { (JSONResponse) -> Void in
                 switch JSONResponse.result {
-                case .Success(let JSON):
-                    resultData(.Success(JSON))
-                case .Failure(let errorOccurred):
-                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                case .success(let JSON):
+                    resultData(.success(JSON))
+                case .failure(let errorOccurred):
+                    resultData(.failure(NetworkingError.responseError(errorOccurred.localizedDescription)))
                 }
             })
-        case .String:
+        case .string:
             Alamofire.request(.GET, requestURL).responseString(completionHandler: { (responseString) -> Void in
                 switch responseString.result {
-                case .Success(let stringValue):
-                    resultData(.Success(stringValue))
-                case .Failure(let errorOccurred):
-                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                case .success(let stringValue):
+                    resultData(.success(stringValue))
+                case .failure(let errorOccurred):
+                    resultData(.failure(NetworkingError.responseError(errorOccurred.localizedDescription)))
                 }
             })
-        case .RawData:
-            Alamofire.request(.GET, requestURL).responseData({ (responseData) -> Void in
+        case .rawData:
+            Alamofire.request(.GET, requestURL).responseData(completionHandler: { (responseData) -> Void in
                 switch responseData.result {
-                case .Success(let response):
-                    resultData(.Success(response))
-                case .Failure(let errorOccurred):
-                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                case .success(let response):
+                    resultData(.success(response))
+                case .failure(let errorOccurred):
+                    resultData(.failure(NetworkingError.responseError(errorOccurred.localizedDescription)))
                 }
             })
         }
@@ -99,7 +99,7 @@ public class HTZNetworkingManager: Manager {
      - parameter httpMethod:      **HTTPMethod** to define the request type.
      - parameter resultData:     Closure containing result data or an error if the request could no be completed.
      */
-    public func sendDataWithEndPoint(endpoint: String?, dataParameters: [String : AnyObject]?, responseType: ResponseType, httpMethod: HTTPRequestType, resultData: (Result<AnyObject, NetworkingError>) -> () )
+    public func sendDataWithEndPoint(_ endpoint: String?, dataParameters: [String : AnyObject]?, responseType: ResponseType, httpMethod: HTTPRequestType, resultData: (Result<AnyObject, NetworkingError>) -> () )
     {
         guard let setURL = self.baseURL else {
             print("A base URL has not been set, cancelling request.")
@@ -108,32 +108,32 @@ public class HTZNetworkingManager: Manager {
         let requestURL = (endpoint != nil) ? "\(setURL)\(endpoint!)" : setURL
         // Response type checking
         switch responseType {
-        case .JSON:
-            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (JSONResponse) -> Void in
+        case .json:
+            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .json, headers: nil).responseJSON(completionHandler: { (JSONResponse) -> Void in
                 switch JSONResponse.result {
-                case .Success(let JSON):
-                    resultData(.Success(JSON))
-                case .Failure(let errorOccurred):
-                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                case .success(let JSON):
+                    resultData(.success(JSON))
+                case .failure(let errorOccurred):
+                    resultData(.failure(NetworkingError.responseError(errorOccurred.localizedDescription)))
                 }
             })
-        case .String:
-            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .JSON, headers: nil).responseString(completionHandler: { (responseString) -> Void in
+        case .string:
+            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .json, headers: nil).responseString(completionHandler: { (responseString) -> Void in
                 switch responseString.result {
-                case .Success(let validString):
-                    resultData(.Success(validString))
+                case .success(let validString):
+                    resultData(.success(validString))
 
-                case .Failure(let errorOccurred):
-                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                case .failure(let errorOccurred):
+                    resultData(.failure(NetworkingError.responseError(errorOccurred.localizedDescription)))
                 }
             })
-        case .RawData:
-            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .JSON, headers: nil).responseData({ (responseData) -> Void in
+        case .rawData:
+            Alamofire.request(Method(rawValue: HTTPRequestType(rawValue: httpMethod.rawValue)!.name)!, requestURL, parameters: dataParameters, encoding: .json, headers: nil).responseData(completionHandler: { (responseData) -> Void in
                 switch responseData.result {
-                case .Success(let validResponse):
-                    resultData(.Success(validResponse))
-                case .Failure(let errorOccurred):
-                    resultData(.Failure(NetworkingError.ResponseError(errorOccurred.localizedDescription)))
+                case .success(let validResponse):
+                    resultData(.success(validResponse))
+                case .failure(let errorOccurred):
+                    resultData(.failure(NetworkingError.responseError(errorOccurred.localizedDescription)))
                 }
             })
         }

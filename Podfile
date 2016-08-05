@@ -6,13 +6,13 @@ use_frameworks!
 
 target 'HTZNetworkingManager' do
 
-pod 'Alamofire'
+pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift3'
 
 end
 
 
 target 'HTZNetworkingManagerTests' do
 
-pod 'Alamofire'
+pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift3'
 
 end
