@@ -10,8 +10,8 @@ Personal Alamofire built upon wrapper for web server API endpoint requests with 
 
 ### Requirements
 
-- iOS 8.0+ / Mac OS X 10.9+ / tvOS 9.0+ / watchOS 2.0+
-- Xcode 7.2+
+- iOS 10.0+ 
+- Xcode 8.0+
 
 ## Installation
 ----
@@ -19,7 +19,7 @@ Personal Alamofire built upon wrapper for web server API endpoint requests with 
 ### CocoaPods
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 pod 'Alamofire'
 pod 'HTZNetworkingManager'
