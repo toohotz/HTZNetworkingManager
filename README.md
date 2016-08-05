@@ -1,6 +1,6 @@
 [![CocoaPods](https://img.shields.io/cocoapods/v/HTZNetworkingManager.svg)](https://github.com/toohotz/HotzNetworkingManager.git)
 [![License](https://img.shields.io/dub/l/vibe-d.svg)](https://opensource.org/licenses/MIT)
-
+[![Build Status](https://travis-ci.org/toohotz/HTZNetworkingManager.svg?branch=swift3)](https://travis-ci.org/toohotz/HTZNetworkingManager)
 # HTZNetworkingManager
 ___
 Personal Alamofire built upon wrapper for web server API endpoint requests with *Result* closure callback for more succinct error handling.  Utilizing the Facade pattern ensures only one networking manager instance exists per app life cycle. This framework wrapper was created wtih the intention of making web server endpoint requests faster to setup and easily customizable.
